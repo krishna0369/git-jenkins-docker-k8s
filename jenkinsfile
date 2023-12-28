@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+      tools {
+         maven "maven-3.9.6"
+      }
+
+    stages {
+       
+        stage('git repo') {
+            steps {
+              git 'https://github.com/krishna0369/git-jenkins-docker-k8s.git'
+            } 
+        }
+        stage('maven build') {
+            steps {
+              sh 'mvn clean package'
+            } 
+        }
+        stage('docker image') {
+            steps {
+              sh 'docker build -t krishna0369/amazonwebapp .'
+            } 
+        }
+        stage('k8s deployment') {
+            steps {
+              sh 'kubectl apply -f amazon-deployment.yml'
+            } 
+        }
+       
+       
+       
+       
+        
+    }
+}
