@@ -9,7 +9,7 @@ spec:
     type: Recreate
  selector: 
    matchLabels: 
-     app: amazonwebapp
+     app: amazon-app
  template:
   metadata:
    name: amazonwebapppod
@@ -18,7 +18,7 @@ spec:
   spec: 
     containers:
     - name: amazonwebappcontainer
-      image: krishna0369/amazonwebapp
+      image: krishna0369/amazon-app
       imagePullPolicy: Always
       ports:
       - containerPort: 8080
@@ -30,7 +30,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-   app: amazonwebapp
+   app: amazon-app
   ports:
    - port: 80
      targetPort: 8080
